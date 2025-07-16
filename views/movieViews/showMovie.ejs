@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%=movie.title%></title>
+</head>
+<body>
+    <%- include('../partials/nav.ejs')%>
+    <h1><%= movie.title %> review by <%=movie.owner ? movie.owner.username : 'Unknown'%> - <%=movie.rating%>%</h1>
+    <h3>Release Date: <%= movie.releaseYear %></h3>
+    <h3>Director: <%= movie.director %></h3>
+    <p><%= movie.review %></p>
+    <% if (movie.owner._id.equals(user._id)) { %>
+
+<form action="/movies/<%= movie._id %>?_method=DELETE" method="POST">
+  <button type="submit">Delete this review</button>
+  <a href="/movies/<%= movie._id %>/edit">Edit this review</a>
+
+  <%}%>
+</form>
+</body>
+</html>
