@@ -16,8 +16,15 @@
 <form action="/movies/<%= movie._id %>?_method=DELETE" method="POST">
   <button type="submit">Delete this review</button>
   <a href="/movies/<%= movie._id %>/edit">Edit this review</a>
-
   <%}%>
+  <h2>Favorites</h2>
+
+<form
+  action="/movies/<%= movie._id %>/favorited-by/<%= user._id %>"
+  method="POST"
+>
+  <button type="submit">👍</button> <span> <%= movie.likedByUsers.length %></span>
+</form>
 </form>
 </body>
 </html>
