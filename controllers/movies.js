@@ -80,6 +80,16 @@ router.put('/:movieId', isSignedIn, async (req, res, next) => {
   }
 });
 
+router.post('/:movieId/liked-by/:userId', async (req, res, next)=>{
+    try {
+        await Movie.findByIdAndUpdate(req.params.movieId, {
+            $push: { likedByUsers: req.params.userId },
+        });
+        res.redirect(`/movies/${req.params.movieId}`);
+    } catch (error) {
+        next(error)
+    }
+})
 
 
 export default router

@@ -20,11 +20,10 @@
   <h2>Favorites</h2>
 
 <form
-  action="/movies/<%= movie._id %>/favorited-by/<%= user._id %>"
+  action="/movies/<%= movie._id %>/liked-by/<%= user._id %>"
   method="POST"
 >
   <button type="submit">👍</button> <span> <%= movie.likedByUsers.length %></span>
-</form>
 </form>
 </body>
 </html>
