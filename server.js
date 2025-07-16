@@ -11,6 +11,7 @@ import isSignedIn from './middleware/isSignedIn.js'
 
 // Routers
 import authRouter from './controllers/auth.js'
+import userRouter from './controllers/users.js'
 import moviesRouter from './controllers/movies.js'
 
 // * -------- Const Section --------
@@ -42,7 +43,7 @@ app.get('/', (req, res) => {
 
 // Router files
 app.use('/auth', authRouter)
-
+app.use('/users', userRouter)
 app.use ('/movies', moviesRouter)
 
 // Error handling

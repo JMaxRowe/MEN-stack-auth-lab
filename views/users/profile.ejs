@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%=user.username%>'s Profile</title>
+</head>
+<body>
+    <%- include('../partials/nav.ejs') %>
+    <h1><%=user.username%>'s profile</h1>
+    <h2>Your Reviews:</h2>
+    <ul>
+        <%moviesOwned.forEach(movie => {%>
+            <li><a href="/movies/<%= movie._id %>">
+                <%= movie.title %> review by <%=movie.owner ? movie.owner.username : 'Unknown'%> - <%=movie.rating%>%
+            </a></li>
+       <% })%>
+    </ul>
+
+    <h2>Your liked Reviews:</h2>
+    <%if(likedMovies.length === 0){%>
+        <p>You haven't liked any reviews :(</p>
+    <%}%>
+    <ul>
+        <%likedMovies.forEach(movie => {%>
+            <li><a href="/movies/<%= movie._id %>">
+                <%= movie.title %> review by <%=movie.owner ? movie.owner.username : 'Unknown'%> - <%=movie.rating%>%
+            </a></li>
+       <% })%>
+    </ul>
+</body>
+</html>
