@@ -9,6 +9,9 @@
     <%- include('../partials/nav.ejs') %>
     <h1><%=user.username%>'s profile</h1>
     <h2>Your Reviews:</h2>
+    <%if(moviesOwned.length===0){%>
+        <a href="/movies/new">Create a review!</a>
+    <%}%>
     <ul>
         <%moviesOwned.forEach(movie => {%>
             <li><a href="/movies/<%= movie._id %>">
