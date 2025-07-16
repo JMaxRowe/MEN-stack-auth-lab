@@ -12,7 +12,7 @@
         <% allMovies.forEach(movie => { %>
         <li>
             <a href="/movies/<%= movie._id %>">
-            <%= movie.title %> review by <%=movie.owner ? movie.owner.username : 'Unknown'%> - <%=movie.rating%>%
+            <%= movie.title %> review by <%=movie.owner ? movie.owner.username : 'Unknown'%> - <%=movie.rating%>% 👍<%= movie.likedByUsers.length %>
             </a>
         </li>
         <% }) %>
