@@ -36,7 +36,10 @@ router.get('/:movieId', isSignedIn, async (req, res, next)=>{
     try {
         const {movieId} = req.params
         const movie = await Movie.findById(movieId).populate('owner')
-        return res.render ('movieViews/showMovie.ejs', {movie})
+
+        const userHasLiked = movie.likedByUsers.some((user)=>user.equals(req.session.user._id))
+
+        return res.render ('movieViews/showMovie.ejs', {movie, userHasLiked: userHasLiked,})
     } catch (error) {
         next(error)
     }
@@ -91,5 +94,15 @@ router.post('/:movieId/liked-by/:userId', async (req, res, next)=>{
     }
 })
 
+router.delete('/:movieId/liked-by/:userId', async (req, res, next)=>{
+    try {
+        await Movie.findByIdAndUpdate(req.params.movieId, {
+            $pull: { likedByUsers: req.params.userId },
+        });
+        res.redirect(`/movies/${req.params.movieId}`);
+    } catch (error) {
+        next(error)
+    }
+})
 
 export default router
